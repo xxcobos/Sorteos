@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.title {
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Fuente moderna y vibrante */
+  color: #FF4081; /* Color vibrante */
+  text-shadow: 0 0 5px rgba(255, 64, 129, 0.5); /* Sombra colorida */
+}
+
+.show-container {
+  background-color: #FFE5EC; /* Fondo rosa claro */
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center; /* Centra el contenido dentro de cada columna */
+}
+
+.canvas-container {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow {
+  position: absolute;
+  top: 8px; /* Ajusta según el tamaño del espacio requerido arriba del canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  z-index: 1;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* Distribuye el espacio uniformemente entre los elementos */
+  align-items: center;
+  gap: 20px; /* Espacio entre las columnas y las imágenes */
+  padding: 0 20px; /* Añade un pequeño padding a los lados si lo deseas */
+}
+
+.left-column, .right-column {
+  background-color: #FFF3F8; /* Fondo blanco rosado en las columnas */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.2); /* Sombra colorida */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido dentro de cada columna */
+}
+
+.left-column {
+  max-width: 50%; /* Asegura que la columna izquierda no ocupe demasiado espacio */
+}
+
+.right-column {
+  max-width: 30%; /* Ajusta el ancho de la columna derecha */
+}
+
+.winner {
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Fuente moderna y vibrante */
+  color: #FF4081; /* Color vibrante */
+  text-shadow: 0 0 5px rgba(255, 64, 129, 0.5); /* Sombra colorida */
+}
+
+canvas {
+  margin: 20px auto;
+  display: block;
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+button {
+  background-color: #FF4081; /* Color vibrante */
+  color: #FFFFFF; /* Texto blanco para contraste */
+  font-family: 'Poppins', sans-serif; /* Fuente moderna y vibrante */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.5); /* Sombra colorida */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none; /* Sin bordes */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+button:hover {
+  background-color: #FF6F91; /* Color más claro al pasar el mouse */
+}
+
+button:active {
+  background-color: #E91E63; /* Color más oscuro al presionar */
+}
+
+.logo-top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 180px; /* Aumenta el tamaño del contenedor */
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 64, 129, 0.5)); /* Sombra colorida */
+}
+
+.advertisement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-advertisement, .right-advertisement {
+  flex-shrink: 0; /* Evita que las imágenes se encojan */
+}
+
+.left-advertisement img, .right-advertisement img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+}
+
+.left-advertisement {
+  margin-right: auto; /* Empuja la imagen hacia el borde izquierdo */
+}
+
+.right-advertisement {
+  margin-left: auto; /* Empuja la imagen hacia el borde derecho */
+}

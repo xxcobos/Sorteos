@@ -139,6 +139,23 @@ export class SorteosComponent {
   }, 100);
   }
 
+
+  runRuedaAnimation(){
+    const availableParticipants = this.participants.filter(participant => !participant.checked);
+    this.router.navigate(['/rueda'],  {
+      state: { 
+        participants: availableParticipants, 
+        numWinners: this.numWinners, 
+        logo: this.logoPreview, // Transferir la imagen como parte del estado
+        background: this.backgroundPreview,
+        nombre: this.nombreSorteo 
+      }
+
+
+
+    });
+  }
+
   runWheelAnimation() {
     const availableParticipants = this.participants.filter(participant => !participant.checked);
     if (this.selectedTheme === 'elegante') {

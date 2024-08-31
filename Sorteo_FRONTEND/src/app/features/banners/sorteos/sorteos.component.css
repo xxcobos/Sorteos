@@ -130,12 +130,55 @@
     align-items: center;
     justify-content: space-between;
     background-color: #78548c;
-    color: #fff;
+    color: #ffffff;
     padding: 10px;
     border-radius: 25px;
     margin: 10px 0;
     width: 100%;
 }
+
+
+
+
+
+/* Estilo básico del select */
+.setting-input {
+    appearance: none;
+    -webkit-appearance: none; /* Para navegadores webkit */
+    -moz-appearance: none; /* Para Firefox */
+    background-color: #181818; /* Color de fondo similar a agua */
+    border: 2px solid #ffffff; /* Borde del select */
+    padding: 8px;
+    border-radius: 10px; /* Borde redondeado para el efecto de gota */
+    font-size: 16px;
+    color: #ffffff;
+    background-image: url('data:image/svg+xml;base64,PCEtLSBHZW5lcmFkb3IgU1ZHIHVzYWRvIHBhcmEgZWwgZG93bnJvdyAtLT4KPHN2ZyBpZD0iQ2FwYSIgZGF0YS1uYW1lPSJDYXBhIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMCA2Ij48cGF0aCBkPSJNMyAxbDQuMDEgNC4xOUExIDEgMCAwIDEgNCA3SDJBMSAxIDAgMCAxIDIgNmw0LTQuMUExIDEgMCAwIDEgMyAxWiIgZmlsbD0iI0EwQTAwMCIvPjwvc3ZnPg==');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Icono de flecha de dropdown */
+    background-size: 10px;
+    cursor: pointer;
+}
+
+.setting-input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgb(255, 255, 255); /* Color de resplandor */
+    transition: box-shadow 0.3s ease-in-out;
+    border-color: #ffffff; /* Cambia el color del borde */
+}
+
+/* Estilo de las opciones */
+.setting-input option {
+    padding: 10px;
+    background-color: #3f3f3f; /* Color de fondo de las opciones */
+    color: #ffffff; /* Color del texto de las opciones */
+    font-size: 16px;
+}
+
+
+
+
+
+
 
 .setting-item button {
     background-color: transparent;
