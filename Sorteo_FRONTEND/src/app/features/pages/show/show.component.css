@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.title{
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+}
+
+.show-container {
+  padding: 20px;
+  background-size: 100% 100%; /* Ajusta la imagen al tamaño del contenedor */
+  background-position: center;
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.canvas-container {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow {
+  position: absolute;
+  top: 8px; /* Ajusta según el tamaño del espacio requerido arriba del canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  z-index: 1;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+  align-items: center; /* Centra verticalmente el contenido de las columnas */
+  gap: 50px; /* Espacio entre las columnas */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido dentro de cada columna */
+}
+
+.left-column {
+  max-width: 50%; /* Asegura que la columna izquierda no ocupe demasiado espacio */
+}
+
+.right-column {
+  max-width: 30%; /* Ajusta el ancho de la columna derecha */
+  text-align: center;
+}
+
+.logo-top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: auto;
+}
+
+canvas {
+  margin: 20px auto;
+  display: block;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Arial', sans-serif; /* Cambia la fuente aquí */
+  background-color: #4CAF50; /* Color de fondo del botón */
+  color: white; /* Color de texto */
+  border: none; /* Sin bordes */
+  border-radius: 12px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Animación para cambio de color */
+}
+
+button:hover {
+  background-color: #45a049; /* Color de fondo cuando el mouse está sobre el botón */
+}
+
+button:active {
+  background-color: #3e8e41; /* Color cuando el botón es presionado */
+}
+
+button:focus {
+  outline: none; /* Remueve el borde de enfoque */
+}
+
+.right-column button {
+  margin: 10px 0;
+}
+
+.advertisement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-advertisement, .right-advertisement {
+  flex-shrink: 0; /* Evita que las imágenes se encojan */
+}
+
+.left-advertisement img, .right-advertisement img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+}
+
+.left-advertisement {
+  margin-right: auto; /* Empuja la imagen hacia el borde izquierdo */
+}
+
+.right-advertisement {
+  margin-left: auto; /* Empuja la imagen hacia el borde derecho */
+}

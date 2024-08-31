@@ -1,0 +1,42 @@
+<div class="title">
+  <h1>{{ nombreSorteo }}</h1>
+</div>
+
+<div class="show-container" [ngStyle]="{
+  'background': background ? 'url(' + background + ')' : 'none',
+  'background-size': 'cover',
+  'background-repeat': 'no-repeat',
+  'background-position': 'center center'
+}">
+  <div class="content-wrapper">
+    <!-- Publicidad Izquierda -->
+    <div class="advertisement left-advertisement">
+      <img [src]="leftAd" alt="Publicidad Izquierda" />
+    </div>
+
+    <!-- Columna izquierda -->
+    <div class="left-column">
+      <h2>Ruleta de Sorteo</h2>
+      <div class="canvas-container">
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <img *ngIf="arrow" [src]="arrow" alt="Flecha" class="arrow" />
+      </div>
+      <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-top-right" />
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="right-column">
+      <button (click)="spinWheel()">Gira la Ruleta!</button>
+      <div *ngIf="showWinnersMessage">
+        <h2>Ganadores</h2>
+        <p *ngFor="let winner of winners">¡El participante ganador es: {{ winner }}!</p>
+      </div>
+      <button (click)="goBack()">Volver a Home</button>
+    </div>
+
+    <!-- Publicidad Derecha -->
+    <div class="advertisement right-advertisement">
+      <img [src]="rightAd" alt="Publicidad Derecha" />
+    </div>
+  </div>
+</div>

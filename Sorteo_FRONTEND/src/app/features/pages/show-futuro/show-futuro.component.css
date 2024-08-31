@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.title {
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+  font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+  color: #00BFBF; /* Color cian suave */
+  text-shadow: 0 0 5px rgba(0, 191, 191, 0.5); /* Sombra más sutil */
+}
+
+.show-container {
+  background-color: #2B2E33; /* Fondo oscuro grisáceo */
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center; /* Centra el contenido dentro de cada columna */
+}
+
+.canvas-container {
+  position: relative;
+  display: inline-block;
+}
+
+.arrow {
+  position: absolute;
+  top: 8px; /* Ajusta según el tamaño del espacio requerido arriba del canvas */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  z-index: 1;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center; /* Centra el contenido */
+  align-items: center; /* Centra verticalmente el contenido de las columnas */
+  gap: 50px; /* Espacio entre las columnas */
+}
+
+.left-column, .right-column {
+  background-color: #3A3F45; /* Fondo gris oscuro en las columnas */
+  border-radius: 10px;
+  padding: 20px;
+  text-shadow: 0 0 5px rgba(0, 191, 191, 0.5); /* Sombra más sutil */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido dentro de cada columna */
+}
+
+
+.left-column {
+    max-width: 50%; /* Asegura que la columna izquierda no ocupe demasiado espacio */
+  }
+  
+  .right-column {
+    max-width: 30%; /* Ajusta el ancho de la columna derecha */
+  }
+
+  .winner{
+    text-align: center;
+    font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+             1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  }
+
+  canvas {
+    margin: 20px auto;
+    display: block;
+  }
+
+button {
+  background-color: #00BFBF; /* Color cian suave */
+  color: #2B2E33; /* Texto oscuro para contraste */
+  font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 191, 191, 0.5); /* Sombra suave */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animación más suave */
+
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none; /* Sin bordes */
+  border-radius: 12px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+button:hover {
+  background-color: #00CED1; /* Variación del color al pasar el mouse */
+}
+
+button:active {
+  background-color: #009999; /* Color cuando el botón es presionado */
+}
+
+.logo-top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 180px;
+  height: auto;
+}
+
+.advertisement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-advertisement, .right-advertisement {
+  flex-shrink: 0; /* Evita que las imágenes se encojan */
+}
+
+.left-advertisement img, .right-advertisement img {
+  max-width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+}
+
+.left-advertisement {
+  margin-right: auto; /* Empuja la imagen hacia el borde izquierdo */
+}
+
+.right-advertisement {
+  margin-left: auto; /* Empuja la imagen hacia el borde derecho */
+}
