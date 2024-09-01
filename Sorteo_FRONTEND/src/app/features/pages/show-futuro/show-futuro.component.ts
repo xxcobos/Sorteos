@@ -17,12 +17,16 @@ export class ShowFuturoComponent implements OnInit {
   background: string | null = null;
   arrow: string | null = null; // Declarar la variable
   nombreSorteo: string = '';
+  isSpinDisabled: boolean = false; // Nueva propiedad para deshabilitar el botón
+  remainingSpins: number = 1; // Nueva propiedad para los giros restantes
+  duplicateWinnerMessage: string | null = null; // Mensaje para ganador duplicado
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras.state) {
       this.participants = navigation.extras.state['participants'];
       this.numWinners = navigation.extras.state['numWinners'];
+      this.remainingSpins = this.numWinners; // Inicializar los giros restantes con el número de ganadores
       this.logo = navigation.extras.state['logo']; // Obtener el logo del estado
       this.background = navigation.extras.state['background']; // Obtener el fondo del estado
       this.nombreSorteo = navigation.extras.state['nombre'] || 'Sorteo'; // Valor predeterminado si no se proporciona un nombre
@@ -56,9 +60,20 @@ export class ShowFuturoComponent implements OnInit {
   }
 
   spinWheel() {
-    this.wheel.stopAnimation(false); // Detener cualquier animación previa
-    this.wheel.rotationAngle = 0; // Reiniciar el ángulo de rotación
-    this.wheel.startAnimation(); // Iniciar la nueva animación
+    if (this.winners.length < this.numWinners) {
+      this.wheel.stopAnimation(false);
+      this.wheel.rotationAngle = 0;
+      this.wheel.startAnimation();
+    }
+
+    // Actualizar los giros restantes y deshabilitar el botón si ya no hay giros disponibles
+    if (this.remainingSpins > 0) {
+      this.remainingSpins--; // Reducir los giros restantes
+    }
+
+    if (this.remainingSpins <= 0) {
+      this.isSpinDisabled = true; // Deshabilitar el botón cuando ya no haya giros disponibles
+    }
   }
 
   alertWinner(indicatedSegment: any) {
@@ -66,17 +81,11 @@ export class ShowFuturoComponent implements OnInit {
 
     // Verificar si el ganador ya ha sido seleccionado
     if (this.winners.includes(winnerName)) {
-      this.spinWheel(); // Volver a girar si el ganador ya fue seleccionado
+      this.remainingSpins++;
+      this.duplicateWinnerMessage = `¡${winnerName} ya ha sido seleccionado! Gira otra vez.`;
     } else {
       this.winners.push(winnerName); // Añadir el ganador a la lista
       this.showWinnersMessage = true; // Asegurar que se muestre el mensaje de ganador
-
-      // Si aún no hemos alcanzado el número de ganadores deseado, volvemos a girar
-      if (this.winners.length < this.numWinners) {
-        setTimeout(() => {
-          this.spinWheel(); // Volver a girar la ruleta sin ocultar el mensaje
-        }, 2000); // Esperar 2 segundos antes de volver a girar
-      }
     }
   }
 

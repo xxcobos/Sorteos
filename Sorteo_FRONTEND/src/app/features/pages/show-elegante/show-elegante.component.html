@@ -26,6 +26,10 @@
 
     <!-- Columna derecha -->
     <div class="right-column">
+      <p *ngIf="remainingSpins > 0">Giros restantes: {{ remainingSpins }}</p>
+      <p *ngIf="remainingSpins === 0">¡Se han agotado los giros!</p>
+      <!-- Mostrar el mensaje cuando un ganador ya fue seleccionado -->
+      <p *ngIf="duplicateWinnerMessage" class="duplicate-winner">{{ duplicateWinnerMessage }}</p>
       <button (click)="spinWheel()">Gira la Ruleta!</button>
       <div *ngIf="showWinnersMessage">
         <h2>Ganadores</h2>
