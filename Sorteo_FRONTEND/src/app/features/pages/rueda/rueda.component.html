@@ -2,6 +2,13 @@
     <h1>{{ nombreSorteo }}</h1>
 </div>
 
+<div class="show-container" [ngStyle]="{
+  'background': background ? 'url(' + background + ')' : 'none',
+  'background-size': 'cover',
+  'background-repeat': 'no-repeat',
+  'background-position': 'center center'
+}">
+
     <div class="content-wrapper">
       <!-- Publicidad Izquierda -->
       <div class="advertisement left-advertisement">
@@ -32,3 +39,5 @@
         <img [src]="rightAd" alt="Publicidad Derecha" />
       </div>
     </div>
+
+</div>
