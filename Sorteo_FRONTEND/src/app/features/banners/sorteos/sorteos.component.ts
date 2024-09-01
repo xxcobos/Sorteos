@@ -42,7 +42,7 @@ export class SorteosComponent {
   highlightedIndex: number = -1;
   showWinnersMessage: boolean = false;
   wheel: any;
-  selectedAnimation: 'cuadrados' | 'ruleta' = 'cuadrados';
+  selectedAnimation: 'cuadrados' | 'rueda' |'ruleta' = 'cuadrados';
   logoFile: File  | null = null;
   backgroundFile: File | null = null;
   logoPreview: string | ArrayBuffer| null = null;
@@ -115,8 +115,30 @@ export class SorteosComponent {
         this.runSquareAnimation();
     } else if (this.selectedAnimation === 'ruleta') {
         this.runWheelAnimation();
+    } else if (this.selectedAnimation === 'rueda') {
+    this.runRuedaAnimation();
     }
  }
+
+ runRuedaAnimation(){
+  console.log('Ejecutando animación de rueda');
+  const availableParticipants = this.participants.filter(participant => !participant.checked);
+  this.router.navigate(['/rueda'],  {
+    state: { 
+      participants: availableParticipants, 
+      numWinners: this.numWinners, 
+      logo: this.logoPreview, // Transferir la imagen como parte del estado
+      background: this.backgroundPreview,
+      nombre: this.nombreSorteo 
+    }
+
+
+
+  });
+}
+
+
+
 
  runSquareAnimation() {
   this.winners = [];
@@ -140,21 +162,7 @@ export class SorteosComponent {
   }
 
 
-  runRuedaAnimation(){
-    const availableParticipants = this.participants.filter(participant => !participant.checked);
-    this.router.navigate(['/rueda'],  {
-      state: { 
-        participants: availableParticipants, 
-        numWinners: this.numWinners, 
-        logo: this.logoPreview, // Transferir la imagen como parte del estado
-        background: this.backgroundPreview,
-        nombre: this.nombreSorteo 
-      }
-
-
-
-    });
-  }
+  
 
   runWheelAnimation() {
     const availableParticipants = this.participants.filter(participant => !participant.checked);

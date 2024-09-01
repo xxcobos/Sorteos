@@ -14,6 +14,7 @@ import { ShowComponent } from './features/pages/show/show.component';
 import { ShowFuturoComponent } from './features/pages/show-futuro/show-futuro.component';
 import { ShowEleganteComponent } from './features/pages/show-elegante/show-elegante.component';
 import { ShowColoridoComponent } from './features/pages/show-colorido/show-colorido.component';
+import { RuedaComponent } from './features/pages/rueda/rueda.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'show-futuro', component: ShowFuturoComponent }, 
   { path: 'show-elegante', component: ShowEleganteComponent }, 
   { path: 'show-colorido', component: ShowColoridoComponent },   
+  { path: 'rueda', component: RuedaComponent },
   { path: '', redirectTo: '/other-home', pathMatch: 'full' }, // Pagina principal
 ];
 
