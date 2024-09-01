@@ -28,6 +28,8 @@ import { ShowComponent } from './features/pages/show/show.component'
 import { ShowFuturoComponent } from './features/pages/show-futuro/show-futuro.component';
 import { ShowColoridoComponent } from './features/pages/show-colorido/show-colorido.component';
 import { ShowEleganteComponent } from './features/pages/show-elegante/show-elegante.component';
+import { RuedaComponent } from './features/pages/rueda/rueda.component';
+
 
 
 
@@ -58,6 +60,7 @@ import { ShowEleganteComponent } from './features/pages/show-elegante/show-elega
     ShowFuturoComponent,
     ShowColoridoComponent,
     ShowEleganteComponent,
+    RuedaComponent
     
     
   ],

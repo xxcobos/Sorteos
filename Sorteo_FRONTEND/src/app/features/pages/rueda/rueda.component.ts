@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rueda',
-  standalone: true,
-  imports: [],
   templateUrl: './rueda.component.html',
   styleUrl: './rueda.component.css'
 })
