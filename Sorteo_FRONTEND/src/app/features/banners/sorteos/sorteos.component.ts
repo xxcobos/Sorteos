@@ -1,3 +1,4 @@
+import * as XLSX from 'xlsx';
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
@@ -105,6 +106,41 @@ export class SorteosComponent {
 
       reader.readAsDataURL(file);
     }
+  }
+
+  onFileUpload(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+
+        // Asumiendo que los nombres están en la primera hoja
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+
+        // Convertir la hoja de Excel a un arreglo de objetos
+        const participantsArray: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+        // Procesar los datos
+        this.processExcelData(participantsArray);
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+  }
+
+  processExcelData(data: any[]): void {
+    this.participants = []; // Limpia la lista actual de participantes
+    data.forEach(row => {
+      const name = row[0]; // Asume que el nombre está en la primera columna
+      if (name) {
+        this.participants.push({ name, checked: false });
+      }
+    });
   }
   
 
