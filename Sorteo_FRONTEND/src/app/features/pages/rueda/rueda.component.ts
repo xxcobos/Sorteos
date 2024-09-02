@@ -20,6 +20,7 @@ export class RuedaComponent implements OnInit, AfterViewInit {
   nombreSorteo: string = '';
   remainingSpins: number = this.numWinners;
   isDuplicateWinner: boolean = false;  // Nueva propiedad
+  
   // Listas que contienen las imágenes de publicidad
 leftImages: string[] = [];
 rightImages: string[] = [];
@@ -46,6 +47,9 @@ currentRightImage: string | null = null;
     'assets/images/ruleta/publicidad2.jpg',
     'assets/images/ruleta/publicidad.gif'
   ];
+
+    // Propiedad para el audio
+    private audio: HTMLAudioElement | null = null;
 
 
   changeAds(): void {
@@ -86,6 +90,7 @@ currentRightImage: string | null = null;
       this.nombreSorteo = navigation.extras.state['nombre'] || 'Sorteo';
       this.leftImages = navigation.extras.state['leftImages'] || []; // Recibir las imágenes del anuncio izquierdo
       this.rightImages = navigation.extras.state['rightImages'] || []; // Recibir las imágenes del anuncio derecho
+      this.loadAudio(navigation.extras.state['audio']);  // Cargar el audio desde el estado
     }
     this.initializeAds();
   }
@@ -102,6 +107,56 @@ currentRightImage: string | null = null;
   ngAfterViewInit(): void {
     this.initializeCanvas();
   }
+
+  ngOnDestroy(): void {
+    this.stopAudio(); // Detener el audio cuando se destruye el componente
+  }
+
+  downloadWinners(): void {
+    if (this.winners.length === 0) {
+      alert('No hay ganadores para descargar.');
+      return;
+    }
+  
+    const blob = new Blob([this.winners.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ganadores.txt';  // Nombre del archivo que se descargará
+    link.click();
+    window.URL.revokeObjectURL(url);  // Liberar el URL del objeto después de usarlo
+  }
+
+  private loadAudio(audioInput: any): void {
+    if (audioInput instanceof Blob) {
+      const audioURL = URL.createObjectURL(audioInput);
+      this.audio = new Audio(audioURL);
+    } else if (typeof audioInput === 'string') {
+      if (audioInput.startsWith('data:audio')) {
+        // Asumiendo que es una cadena base64
+        this.audio = new Audio(audioInput);
+      } else {
+        // Asumiendo que es un URL directo
+        this.audio = new Audio(audioInput);
+      }
+    } else {
+      console.error('Unsupported audio format.');
+      return;
+    }
+  
+    this.audio.volume = 0.01;  // Ajustar el volumen a un nivel más bajo (por ejemplo, 30%)
+    this.audio.loop = true;    // Configurar para repetir
+    this.audio.play();         // Reproducir el audio
+  }
+
+  private stopAudio(): void {
+    if (this.audio) {
+      this.audio.pause();       // Pausar el audio
+      this.audio.currentTime = 0;  // Reiniciar el tiempo de reproducción
+      this.audio = null;        // Liberar el recurso de audio
+    }
+  }
+  
 
   private initializeCanvas(): void {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement | null;

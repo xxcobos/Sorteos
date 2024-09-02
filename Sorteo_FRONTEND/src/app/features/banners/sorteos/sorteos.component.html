@@ -13,7 +13,6 @@
                     <label>Tipo de Animación:</label>
                     <select [(ngModel)]="selectedAnimation" class="setting-input">
                         <option value="cuadrados">Cuadrados</option>
-                        <option value="ruleta">Ruleta</option>
                         <option value="rueda">Rueda</option>
                       </select>
                 </div>
@@ -70,11 +69,11 @@
                     </label>
                 </div>
 
-                <div class="setting-item">
+                <div class="setting-item background">
                 <!-- Campo para cargar el archivo Excel -->
-                <label for="participantesArchivo">Subir archivo con participantes</label>
-                <input id="fileInput" type="file" (change)="onFileUpload($event)" accept=".xlsx, .xls">
-                <label for="fileInput" class="custom-file-button">Subir</label>
+                <label for="setting-item background">Subir archivo con participantes</label>
+                <input id="fileInput5" type="file" type="file" (change)="onFileUpload($event)" accept=".xlsx, .xls">
+                <label for="fileInput5" class="custom-file-button">Subir</label>
                 </div>
 
                 <div class="setting-item setting-participants">
@@ -126,6 +125,12 @@
                         <input id="fileInput3" type="file" id="rightAdUpload" (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
                         <label for="fileInput3" class="custom-file-button">Subir</label>
                       </div>  
+                </div>
+
+                <div class="setting-item logo">
+                  <label for="rightAdUpload">Musica:</label>
+                  <input id="fileInput4" type="file" accept=".mp3" (change)="onAudioFileSelected($event)">
+                  <label for="fileInput4" class="custom-file-button">Subir</label>
                 </div>
                 
                   
