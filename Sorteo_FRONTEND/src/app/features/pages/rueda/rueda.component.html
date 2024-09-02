@@ -1,5 +1,8 @@
+
+
+
 <div class="title">
-    <h1>{{ nombreSorteo }}</h1>
+  <h1 class="text">{{ nombreSorteo }}</h1>
 </div>
 
 <div class="show-container" [ngStyle]="{
@@ -9,35 +12,39 @@
   'background-position': 'center center'
 }">
 
-    <div class="content-wrapper">
-      <!-- Publicidad Izquierda -->
-      <div class="advertisement left-advertisement">
-        <img [src]="leftAd" alt="Publicidad Izquierda" />
-      </div>
-  
-      <!-- Columna izquierda -->
-      <div class="left-column">
-        <h2>Ruleta de Sorteo</h2>
-        <div class="canvas-container">
-          <canvas id="canvas" width="500" height="500"></canvas>
-          <img *ngIf="arrow" [src]="arrow" alt="Flecha" class="arrow" />
-        </div>
-        <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-top-right" />
-      </div>
-  
-      <!-- Columna derecha -->
-      <div class="right-column">
-        <div *ngIf="showWinnersMessage">
-          <h2>Ganadores</h2>
-          <p *ngFor="let winner of winners">¡El participante ganador es: {{ winner }}!</p>
-        </div>
-        <button (click)="goBack()">Volver a Home</button>
-      </div>
-  
-      <!-- Publicidad Derecha -->
-      <div class="advertisement right-advertisement">
-        <img [src]="rightAd" alt="Publicidad Derecha" />
-      </div>
+  <div class="content-wrapper">
+    <!-- Publicidad Izquierda -->
+    <div class="advertisement left-advertisement">
+      <img [src]="leftAd" alt="Publicidad Izquierda" />
     </div>
 
+    <!-- Columna izquierda -->
+<div class="left-column">
+  <h2>Rueda de Sorteo</h2>
+  <div class="canvas-container">
+    <div class="reel-container">
+      <canvas id="canvas" width="300" height="150"></canvas> <!-- Ajusta el tamaño del canvas -->
+      <div class="winner-highlight" *ngIf="winner"></div> <!-- Elemento para el recuadro -->
+    </div>
+    <img *ngIf="arrow" [src]="arrow" alt="Flecha" class="arrow" />
+  </div>
+  <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-top-right" />
 </div>
+
+<!-- Columna derecha -->
+<div class="right-column">
+  <div *ngIf="showWinnersMessage">
+    <h2>Ganadores</h2>
+    <p>¡El participante ganador es: {{ winner }}!</p>
+  </div>
+  <button (click)="startSlot()">Empezar Sorteo</button>
+  <button (click)="goBack()">Volver a Home</button>
+</div>
+
+    <!-- Publicidad Derecha -->
+    <div class="advertisement right-advertisement">
+      <img [src]="rightAd" alt="Publicidad Derecha" />
+    </div>
+  </div>
+</div>
+
