@@ -123,9 +123,9 @@ currentRightImage: string | null = null;
     const reel = {
       width: this.canvas.width,
       height: this.canvas.height,
-      speed: 0,
-      maxSpeed: 10,
-      acceleration: 0.1,
+      speed: 10,
+      maxSpeed: 50,
+      acceleration: 1.80,
       deceleration: 0.05,
       nameHeight: 30, // Altura de cada nombre
       names: [...this.participants.map(p => p.name), ...this.participants.map(p => p.name)],
@@ -145,7 +145,7 @@ currentRightImage: string | null = null;
   
     gsap.to(reel, {
       offset: finalOffset, // Desplazar hasta el ganador
-      duration: 4 + Math.random(), // Duración aleatoria para darle realismo
+      duration: 7 + Math.random(), // Duración aleatoria para darle realismo
       ease: 'power2.out',
       onUpdate: () => {
         if (this.context) {
