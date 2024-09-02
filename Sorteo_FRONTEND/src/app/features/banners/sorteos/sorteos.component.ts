@@ -50,6 +50,8 @@ export class SorteosComponent {
   backgroundPreview: string | ArrayBuffer | null = null;
   nombreSorteo: string = ''; // Propiedad para el nombre del sorteo
   selectedTheme: string = 'normal'; // Valor por defecto
+  audioFile: File | null = null;
+  audioPreview: string | ArrayBuffer | null = null;
   
   isClosing: boolean = false; // Nuevo estado para manejar la animación de cierre
 
@@ -75,7 +77,22 @@ export class SorteosComponent {
     if (fileInput) {
         fileInput.click();
     }
-}
+  }
+
+  onAudioFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.audioFile = file;
+      
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.audioPreview = reader.result;
+      };
+      
+      reader.readAsDataURL(file); // Leer el archivo MP3 como DataURL para previsualización
+    }
+  }
 
   loadParticipantsFromFile(): void {
     this.authService.getPhotoNames().subscribe(
@@ -196,6 +213,7 @@ export class SorteosComponent {
       nombre: this.nombreSorteo,
       leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
       rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
+      audio: this.audioPreview // Pasar el archivo de audio
     }
 
 
