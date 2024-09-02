@@ -43,7 +43,7 @@ export class SorteosComponent {
   highlightedIndex: number = -1;
   showWinnersMessage: boolean = false;
   wheel: any;
-  selectedAnimation: 'cuadrados' | 'rueda' |'ruleta' = 'cuadrados';
+  selectedAnimation: 'cuadrados' | 'rueda' |'ruleta' = 'rueda';
   logoFile: File  | null = null;
   backgroundFile: File | null = null;
   logoPreview: string | ArrayBuffer| null = null;
