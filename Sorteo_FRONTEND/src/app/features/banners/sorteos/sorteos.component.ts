@@ -53,6 +53,10 @@ export class SorteosComponent {
   
   isClosing: boolean = false; // Nuevo estado para manejar la animación de cierre
 
+  leftAdFiles: string[] = [];
+  rightAdFiles: string[] = [];
+
+
 
   animationStage: 'fade' | 'color-change' | 'rotate' | 'none' = 'none';
 
@@ -105,6 +109,20 @@ export class SorteosComponent {
       };
 
       reader.readAsDataURL(file);
+    }
+  }
+
+  onAdFileSelected(event: Event, side: 'left' | 'right'): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      const filesArray = Array.from(input.files);
+      const fileUrls = filesArray.map(file => URL.createObjectURL(file));
+  
+      if (side === 'left') {
+        this.leftAdFiles = [...this.leftAdFiles, ...fileUrls];  // Agrega las nuevas imágenes al array existente
+      } else if (side === 'right') {
+        this.rightAdFiles = [...this.rightAdFiles, ...fileUrls];  // Agrega las nuevas imágenes al array existente
+      }
     }
   }
 
@@ -210,7 +228,9 @@ export class SorteosComponent {
             numWinners: this.numWinners, 
             logo: this.logoPreview, // Transferir la imagen como parte del estado
             background: this.backgroundPreview,
-            nombre: this.nombreSorteo 
+            nombre: this.nombreSorteo,
+            leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
+            rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
           }
         });
       } else {
@@ -224,7 +244,9 @@ export class SorteosComponent {
             numWinners: this.numWinners, 
             logo: this.logoPreview, // Transferir la imagen como parte del estado
             background: this.backgroundPreview,
-            nombre: this.nombreSorteo 
+            nombre: this.nombreSorteo,
+            leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
+            rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
           }
         });
       } else {
@@ -238,7 +260,9 @@ export class SorteosComponent {
             numWinners: this.numWinners, 
             logo: this.logoPreview, // Transferir la imagen como parte del estado
             background: this.backgroundPreview,
-            nombre: this.nombreSorteo 
+            nombre: this.nombreSorteo ,
+            leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
+            rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
           }
         });
       } else {
@@ -252,7 +276,9 @@ export class SorteosComponent {
             numWinners: this.numWinners, 
             logo: this.logoPreview, // Transferir la imagen como parte del estado
             background: this.backgroundPreview,
-            nombre: this.nombreSorteo 
+            nombre: this.nombreSorteo,
+            leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
+            rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
           }
         });
       } else {

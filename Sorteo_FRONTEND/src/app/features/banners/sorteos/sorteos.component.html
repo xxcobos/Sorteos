@@ -113,6 +113,16 @@
                       Vista previa
                     </div>
                   </div>
+                  <div class="setting-item background">
+                    <label for="leftAdUpload">Subir imágenes para el anuncio izquierdo:</label>
+                    <input type="file" id="leftAdUpload" (change)="onAdFileSelected($event, 'left')" accept="image/png, image/jpeg" multiple>
+                  </div>
+                  
+                  <div class="setting-item background">
+                    <label for="rightAdUpload">Subir imágenes para el anuncio derecho:</label>
+                    <input type="file" id="rightAdUpload" (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
+                  </div>
+                  
                   <div class="setting-item topic">
                     <label for="topic">Elegir tema</label>
                     <select [(ngModel)]="selectedTheme" class="setting-input">

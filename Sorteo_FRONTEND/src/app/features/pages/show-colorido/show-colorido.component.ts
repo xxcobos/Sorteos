@@ -20,6 +20,17 @@ export class ShowColoridoComponent implements OnInit {
   isSpinDisabled: boolean = false; // Nueva propiedad para deshabilitar el botón
   remainingSpins: number = 1; // Nueva propiedad para los giros restantes
   duplicateWinnerMessage: string | null = null; // Mensaje para ganador duplicado
+  // Listas que contienen las imágenes de publicidad
+leftImages: string[] = [];
+rightImages: string[] = [];
+
+// Índices para las imágenes actuales
+currentLeftImageIndex: number = 0;
+currentRightImageIndex: number = 0;
+
+// Imágenes que se muestran actualmente
+currentLeftImage: string | null = null;
+currentRightImage: string | null = null;
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -30,7 +41,15 @@ export class ShowColoridoComponent implements OnInit {
       this.logo = navigation.extras.state['logo']; // Obtener el logo del estado
       this.background = navigation.extras.state['background']; // Obtener el fondo del estado
       this.nombreSorteo = navigation.extras.state['nombre'] || 'Sorteo'; // Valor predeterminado si no se proporciona un nombre
+      this.leftImages = navigation.extras.state['leftImages'] || []; // Recibir las imágenes del anuncio izquierdo
+      this.rightImages = navigation.extras.state['rightImages'] || []; // Recibir las imágenes del anuncio derecho
     }
+    this.initializeAds();
+  }
+
+  initializeAds() {
+    this.changeAds(); // Inicia la rotación de imágenes
+    setInterval(() => this.changeAds(), 5000); // Cambia la imagen cada 5 segundos
   }
 
   ngOnInit(): void {
@@ -96,29 +115,42 @@ export class ShowColoridoComponent implements OnInit {
   leftAd: string = 'assets/images/ruleta/publicidad1.jpg';
   rightAd: string = 'assets/images/ruleta/publicidad1.jpg';
 
-  leftImages: string[] = [
+  oldleftImages: string[] = [
     'assets/images/ruleta/publicidad1.jpg',
     'assets/images/ruleta/publicidad2.jpg',
     'assets/images/ruleta/publicidad.gif'
   ];
 
-  rightImages: string[] = [
+  oldrightImages: string[] = [
     'assets/images/ruleta/publicidad1.jpg',
     'assets/images/ruleta/publicidad2.jpg',
     'assets/images/ruleta/publicidad.gif'
   ];
 
-  leftIndex: number = 0;
-  rightIndex: number = 0;
 
-  changeAds() {
-    setInterval(() => {
-      this.leftIndex = (this.leftIndex + 1) % this.leftImages.length;
-      this.rightIndex = (this.rightIndex + 1) % this.rightImages.length;
+  changeAds(): void {
+    // Rotación de las imágenes izquierda
+    if (this.leftImages.length > 0) {
+      this.currentLeftImage = this.leftImages[this.currentLeftImageIndex];
+      this.currentLeftImageIndex = (this.currentLeftImageIndex + 1) % this.leftImages.length;
+    } else {
+      this.currentLeftImage = null; // Espacio vacío si no hay imágenes
+    }
 
-      this.leftAd = this.leftImages[this.leftIndex];
-      this.rightAd = this.rightImages[this.rightIndex];
-    }, 5000); // Cambia cada 5 segundos
+    // Rotación de las imágenes derecha
+    if (this.rightImages.length > 0) {
+      this.currentRightImage = this.rightImages[this.currentRightImageIndex];
+      this.currentRightImageIndex = (this.currentRightImageIndex + 1) % this.rightImages.length;
+    } else {
+      this.currentRightImage = null; // Espacio vacío si no hay imágenes
+    }
+
+    // Cambiar las imágenes en intervalos de tiempo
+    setTimeout(() => {
+      this.changeAds();
+    }, 5000); // Cambia las imágenes cada 5 segundos
   }
+
+
 }
 
