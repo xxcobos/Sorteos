@@ -19,44 +19,47 @@
     </div>
 
     <!-- Columna izquierda -->
-<div class="left-column">
-  <h2>Rueda de Sorteo</h2>
-  <div class="canvas-container">
-    <div class="reel-container">
-      <div class="highlight-box"></div> <!-- Nuevo rectángulo blanco -->
-      <canvas id="canvas" width="300" height="150"></canvas> <!-- Ajusta el tamaño del canvas -->
-      <div class="winner-highlight" *ngIf="winner"></div> <!-- Elemento para el recuadro -->
+    <div class="left-column">
+      <h2>Rueda de Sorteo</h2>
+      <div class="canvas-container">
+        <div class="reel-container">
+          <div class="highlight-box"></div> <!-- Nuevo rectángulo blanco -->
+          <canvas id="canvas" width="300" height="150"></canvas> <!-- Ajusta el tamaño del canvas -->
+          <div class="winner-highlight" *ngIf="winner"></div> <!-- Elemento para el recuadro -->
+        </div>
+        <img *ngIf="arrow" [src]="arrow" alt="Flecha" class="arrow" />
+      </div>
+      <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-top-right" />
     </div>
-    <img *ngIf="arrow" [src]="arrow" alt="Flecha" class="arrow" />
-  </div>
-  <img *ngIf="logo" [src]="logo" alt="Logo" class="logo-top-right" />
-</div>
 
-<!-- Columna derecha -->
-<div class="right-column">
-  <div *ngIf="showWinnersMessage">
-    <h2>Ganadores</h2>
-    <ng-container *ngIf="!isDuplicateWinner">
-      <p>¡El participante ganador es: {{ winner }}!</p>
-    </ng-container>
-    <ng-container *ngIf="isDuplicateWinner">
-      <p>{{ winner }} ya ha sido seleccionado. Intenta de nuevo.</p>
-    </ng-container>
-  </div>
-  <p>Número de giros restantes: {{ remainingSpins }}</p> <!-- Texto que muestra los giros restantes -->
-  <button 
-  (click)="startSlot()" 
-  [disabled]="remainingSpins === 0" 
-  [ngClass]="{'active-button': remainingSpins > 0, 'disabled-button': remainingSpins === 0}">
-  Empezar Sorteo
-</button>
-  <button class="active-button" (click)="goBack()">Volver a Home</button>
-</div>
+    <!-- Columna derecha -->
+    <div class="right-column">
+      <div *ngIf="showWinnersMessage">
+        <h2>Ganadores</h2>
+        <ng-container *ngIf="!isDuplicateWinner">
+          <p>¡El participante ganador es: {{ winner }}!</p>
+        </ng-container>
+        <ng-container *ngIf="isDuplicateWinner">
+          <p>{{ winner }} ya ha sido seleccionado. Intenta de nuevo.</p>
+        </ng-container>
+      </div>
+      <p>Número de giros restantes: {{ remainingSpins }}</p> <!-- Texto que muestra los giros restantes -->
+      <button 
+      (click)="startSlot()" 
+      [disabled]="remainingSpins === 0" 
+      [ngClass]="{'active-button': remainingSpins > 0, 'disabled-button': remainingSpins === 0}">
+      Empezar Sorteo
+    </button>
+      <button class="active-button" (click)="goBack()">Volver a Home</button>
+    </div>
 
     <!-- Publicidad Derecha -->
     <div class="advertisement right-advertisement">
       <img *ngIf="currentRightImage" [src]="currentRightImage" alt="Publicidad Derecha" />
     </div>
+
   </div>
+
+
 </div>
 
