@@ -112,9 +112,7 @@
                         <label for="background">Fondo de Pantalla</label>
                         <input id="fileInput1" type="file" (change)="onFileSelected($event, 'background')" accept="image/png, image/jpeg" />
                         <label for="fileInput1" class="custom-file-button">Subir</label>
-                        <div *ngIf="backgroundPreview" [style.backgroundImage]="'url(' + backgroundPreview + ')'" class="background-preview">
-                          Vista
-                        </div>
+                        <img *ngIf="backgroundPreview" [src]="backgroundPreview" alt="Background Preview" class="background-preview">
                       </div>
                       <div class="setting-item background">
                         <label for="leftAdUpload">Anuncio izquierdo:</label>

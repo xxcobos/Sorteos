@@ -49,7 +49,7 @@ export class SorteosComponent {
   logoPreview: string | ArrayBuffer| null = null;
   backgroundPreview: string | ArrayBuffer | null = null;
   nombreSorteo: string = ''; // Propiedad para el nombre del sorteo
-  selectedTheme: string = 'theme1'; // Valor por defecto
+  selectedTheme: string = 'normal'; // Valor por defecto
   
   isClosing: boolean = false; // Nuevo estado para manejar la animación de cierre
 
