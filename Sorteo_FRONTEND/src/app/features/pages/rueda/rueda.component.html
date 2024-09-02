@@ -15,7 +15,7 @@
   <div class="content-wrapper">
     <!-- Publicidad Izquierda -->
     <div class="advertisement left-advertisement">
-      <img [src]="leftAd" alt="Publicidad Izquierda" />
+      <img *ngIf="currentLeftImage" [src]="currentLeftImage" alt="Publicidad Izquierda" />
     </div>
 
     <!-- Columna izquierda -->
@@ -55,7 +55,7 @@
 
     <!-- Publicidad Derecha -->
     <div class="advertisement right-advertisement">
-      <img [src]="rightAd" alt="Publicidad Derecha" />
+      <img *ngIf="currentRightImage" [src]="currentRightImage" alt="Publicidad Derecha" />
     </div>
   </div>
 </div>

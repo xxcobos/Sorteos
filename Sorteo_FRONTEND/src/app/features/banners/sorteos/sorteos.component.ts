@@ -183,7 +183,9 @@ export class SorteosComponent {
       numWinners: this.numWinners, 
       logo: this.logoPreview, // Transferir la imagen como parte del estado
       background: this.backgroundPreview,
-      nombre: this.nombreSorteo 
+      nombre: this.nombreSorteo,
+      leftImages: this.leftAdFiles,  // Pasar las imágenes del anuncio izquierdo
+      rightImages: this.rightAdFiles, // Pasar las imágenes del anuncio derecho
     }
 
 
