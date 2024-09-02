@@ -18,6 +18,8 @@ export class RuedaComponent implements OnInit, AfterViewInit {
   background: string | null = null;
   arrow: string | null = null;
   nombreSorteo: string = '';
+  remainingSpins: number = this.numWinners;
+  isDuplicateWinner: boolean = false;  // Nueva propiedad
 
   leftAd: string = 'assets/images/ruleta/publicidad1.jpg';
   rightAd: string = 'assets/images/ruleta/publicidad1.jpg';
@@ -55,6 +57,7 @@ export class RuedaComponent implements OnInit, AfterViewInit {
     if (navigation?.extras.state) {
       this.participants = navigation.extras.state['participants'];
       this.numWinners = navigation.extras.state['numWinners'];
+      this.remainingSpins= navigation.extras.state['numWinners'];
       this.logo = navigation.extras.state['logo'];
       this.background = navigation.extras.state['background'];
       this.nombreSorteo = navigation.extras.state['nombre'] || 'Sorteo';
@@ -130,22 +133,47 @@ export class RuedaComponent implements OnInit, AfterViewInit {
         }
       },
       onComplete: () => {
-        this.winner = winnerName; // Establecer el ganador
-        this.showWinnersMessage = true;
-        this.slotNames = [this.winner, this.winner, this.winner];
-        this.animateWinnerLeftColumn();
-        this.animateWinner(); // Llama a la animación de GSAP
+        // Verificar si el ganador ya ha sido seleccionado
+        if (this.winners.includes(winnerName)) {
+          // Si ya ha sido seleccionado, aumenta los giros restantes y muestra un mensaje
+          this.isDuplicateWinner = true; // Marcamos como duplicado
+          this.remainingSpins++;
+        } else {
+          // Si no ha sido seleccionado, procede a guardarlo como ganador
+          this.isDuplicateWinner = false; 
+          this.winner = winnerName;
+          this.winners.push(winnerName);
+          this.showWinnersMessage = true;
+          this.slotNames = [this.winner, this.winner, this.winner];
+          this.animateWinnerLeftColumn();
+          this.animateWinner(); // Llama a la animación de GSAP
+        }
       }
     });
   }
   
   
   
+  
 
 
   startSlot() {
-    this.drawReel();
+    if (this.remainingSpins > 0) {
+      this.drawReel(); // Siempre ejecutar la animación de la rueda
+      this.remainingSpins--;  // Decrementa el número de giros restantes
+    }
   }
+
+  showWinnerMessage(message: string) {
+    this.winner = message;
+    this.showWinnersMessage = true;
+  
+    // Lógica para ocultar el mensaje después de unos segundos si es necesario
+    setTimeout(() => {
+      this.showWinnersMessage = false;
+    }, 3000); // 3 segundos, ajusta según necesites
+  }
+  
 
   private animateWinner(): void {
     const rightColumn = document.querySelector('.right-column');

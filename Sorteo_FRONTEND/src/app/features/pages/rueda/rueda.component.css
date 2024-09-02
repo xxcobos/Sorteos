@@ -192,8 +192,22 @@ canvas {
   height: 100%; /* Ajusta la altura automáticamente para mantener la proporción */
 }
 
-button {
+.active-button {
   background-color: #ff6600; /* Color vibrante */
+  color: #FFFFFF; /* Texto blanco para contraste */
+  font-family: 'Poppins', sans-serif; /* Fuente moderna y vibrante */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 100, 0, 0.5); /* Sombra colorida */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.disabled-button {
+  background-color: #793000; /* Color vibrante */
   color: #FFFFFF; /* Texto blanco para contraste */
   font-family: 'Poppins', sans-serif; /* Fuente moderna y vibrante */
   border-radius: 10px;

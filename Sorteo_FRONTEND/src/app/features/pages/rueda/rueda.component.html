@@ -36,10 +36,21 @@
 <div class="right-column">
   <div *ngIf="showWinnersMessage">
     <h2>Ganadores</h2>
-    <p>¡El participante ganador es: {{ winner }}!</p>
+    <ng-container *ngIf="!isDuplicateWinner">
+      <p>¡El participante ganador es: {{ winner }}!</p>
+    </ng-container>
+    <ng-container *ngIf="isDuplicateWinner">
+      <p>{{ winner }} ya ha sido seleccionado. Intenta de nuevo.</p>
+    </ng-container>
   </div>
-  <button (click)="startSlot()">Empezar Sorteo</button>
-  <button (click)="goBack()">Volver a Home</button>
+  <p>Número de giros restantes: {{ remainingSpins }}</p> <!-- Texto que muestra los giros restantes -->
+  <button 
+  (click)="startSlot()" 
+  [disabled]="remainingSpins === 0" 
+  [ngClass]="{'active-button': remainingSpins > 0, 'disabled-button': remainingSpins === 0}">
+  Empezar Sorteo
+</button>
+  <button class="active-button" (click)="goBack()">Volver a Home</button>
 </div>
 
     <!-- Publicidad Derecha -->
