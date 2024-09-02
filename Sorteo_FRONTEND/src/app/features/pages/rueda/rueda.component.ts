@@ -87,7 +87,7 @@ export class RuedaComponent implements OnInit, AfterViewInit {
       console.error('Canvas or context is not initialized.');
       return;
     }
-
+  
     const reel = {
       width: this.canvas.width,
       height: this.canvas.height,
@@ -95,35 +95,42 @@ export class RuedaComponent implements OnInit, AfterViewInit {
       maxSpeed: 10,
       acceleration: 0.1,
       deceleration: 0.05,
+      nameHeight: 30, // Altura de cada nombre
       names: [...this.participants.map(p => p.name), ...this.participants.map(p => p.name)],
       offset: 0
     };
-
-    const totalHeight = reel.names.length * 30;
+  
+    const totalHeight = reel.names.length * reel.nameHeight;
     const visibleHeight = reel.height;
-    const duration = 4000; // Total animation duration in ms
-
+  
+    // Elegir un ganador al azar
+    const winnerIndex = Math.floor(Math.random() * this.participants.length);
+    const winnerName = this.participants[winnerIndex].name;
+  
+    // Calcular el offset para que el nombre ganador quede en el centro
+    const centerOffset = (totalHeight / 2) - (reel.nameHeight / 2);
+    const finalOffset = (winnerIndex * reel.nameHeight) + centerOffset;
+  
     gsap.to(reel, {
-      offset: totalHeight, // Move the offset over the height of all names
-      duration: duration / 1000, // Duration in seconds
+      offset: finalOffset, // Desplazar hasta el ganador
+      duration: 4 + Math.random(), // Duración aleatoria para darle realismo
       ease: 'power2.out',
       onUpdate: () => {
-        if (this.context) { // Ensure context is defined
+        if (this.context) {
           this.context.clearRect(0, 0, reel.width, reel.height);
           this.context.font = '24px Arial';
           this.context.textAlign = 'center';
           this.context.textBaseline = 'middle';
           this.context.fillStyle = '#FFF';
-
-          for (let i = 0; i < Math.ceil(visibleHeight / 30) + 1; i++) {
-            const name = reel.names[Math.floor((reel.offset / 30 + i) % reel.names.length)];
-            this.context.fillText(name, reel.width / 2, 30 * i - reel.offset % 30 + reel.height / 2);
+  
+          for (let i = 0; i < Math.ceil(visibleHeight / reel.nameHeight) + 1; i++) {
+            const name = reel.names[Math.floor((reel.offset / reel.nameHeight + i) % reel.names.length)];
+            this.context.fillText(name, reel.width / 2, reel.nameHeight * i - reel.offset % reel.nameHeight + reel.height / 2);
           }
         }
       },
       onComplete: () => {
-        const randomIndex = Math.floor(Math.random() * this.participants.length);
-        this.winner = this.participants[randomIndex].name;
+        this.winner = winnerName; // Establecer el ganador
         this.showWinnersMessage = true;
         this.slotNames = [this.winner, this.winner, this.winner];
         this.animateWinnerLeftColumn();
@@ -131,6 +138,10 @@ export class RuedaComponent implements OnInit, AfterViewInit {
       }
     });
   }
+  
+  
+  
+
 
   startSlot() {
     this.drawReel();

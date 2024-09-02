@@ -32,8 +32,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/gsap/src/minified/TimelineMax.min.js",
-              "node_modules/gsap/src/minified/TweenMax.min.js",
               "src/assets/JS/Winwheel.js"
             ]
           },
