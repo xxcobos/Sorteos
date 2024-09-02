@@ -73,7 +73,8 @@
                 <div class="setting-item">
                 <!-- Campo para cargar el archivo Excel -->
                 <label for="participantesArchivo">Subir archivo con participantes</label>
-                <input type="file" (change)="onFileUpload($event)" accept=".xlsx, .xls">
+                <input id="fileInput" type="file" (change)="onFileUpload($event)" accept=".xlsx, .xls">
+                <label for="fileInput" class="custom-file-button">Subir</label>
                 </div>
 
                 <div class="setting-item setting-participants">

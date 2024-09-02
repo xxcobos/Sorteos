@@ -73,6 +73,7 @@ currentRightImage: string | null = null;
 
   private canvas: HTMLCanvasElement | null = null;
   private context: CanvasRenderingContext2D | null = null;
+   winnersContainerVisible: boolean = false; // Nueva variable para controlar la visibilidad del contenedor
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -176,14 +177,59 @@ currentRightImage: string | null = null;
           this.slotNames = [this.winner, this.winner, this.winner];
           this.animateWinnerLeftColumn();
           this.animateWinner(); // Llama a la animación de GSAP
+          this.addWinnerToCardContainer(winnerName);
+          this.showWinnersContainer()
         }
       }
     });
   }
+
+
+
+
+  private showWinnersContainer(): void {
+    const winnersContainer = document.querySelector('.winners-container') as HTMLElement;
   
+    if (winnersContainer) {
+      winnersContainer.classList.add('show'); // Añade la clase para mostrar el contenedor con animación
+    }
+  }
+
+
+  private addWinnerToCardContainer(winnerName: string): void {
+    const winnersContainer = document.querySelector('.winners-container') as HTMLDivElement;
+    
+    if (winnersContainer) {
+      // Crear un nuevo card-container
+      const newCardContainer = document.createElement('div');
+      newCardContainer.className = 'card-container'; // Aplicar la clase
   
+      // Crear la tarjeta
+      const newCard = document.createElement('div');
+      newCard.className = 'card'; // Aplicar la clase
   
+      // Crear y añadir el nombre del ganador
+      const h4 = document.createElement('h4');
+      h4.textContent = winnerName;
+      newCard.appendChild(h4);
   
+      // Añadir la tarjeta al contenedor de tarjeta
+      newCardContainer.appendChild(newCard);
+  
+      // Añadir el nuevo card-container al contenedor principal
+      winnersContainer.appendChild(newCardContainer);
+  
+      // Aplicar animación al nuevo card-container
+      gsap.fromTo(newCardContainer, 
+        { opacity: 0, y: -50 }, 
+        { opacity: 1, y: 0, duration: 0.5, ease: 'ease-out' }
+      );
+    }
+  }
+  
+
+
+
 
 
   startSlot() {
