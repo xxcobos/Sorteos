@@ -67,6 +67,16 @@ export class SorteosComponent {
     this.loadParticipantsFromFile();
   }
 
+
+  //diseño del boton
+  
+  triggerFileInput(elementId: string): void {
+    const fileInput = document.getElementById(elementId) as HTMLElement;
+    if (fileInput) {
+        fileInput.click();
+    }
+}
+
   loadParticipantsFromFile(): void {
     this.authService.getPhotoNames().subscribe(
       (photoNames: string[]) => {

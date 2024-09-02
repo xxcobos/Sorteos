@@ -100,28 +100,35 @@
                 <h3>Personalización empresarial</h3>
             </div>
             <div class="section-body">
-                <div class="setting-item logo">
-                    <label for="logo">Subir Logo</label>
-                    <input type="file" (change)="onFileSelected($event, 'logo')" accept="image/png, image/jpeg" />
-                    <img *ngIf="logoPreview" [src]="logoPreview" alt="Logo Preview" class="logo-preview"/>
-                  </div>
-                  
-                  <div class="setting-item background">
-                    <label for="background">Subir Fondo de Pantalla</label>
-                    <input type="file" (change)="onFileSelected($event, 'background')" accept="image/png, image/jpeg" />
-                    <div *ngIf="backgroundPreview" [style.backgroundImage]="'url(' + backgroundPreview + ')'" class="background-preview">
-                      Vista previa
-                    </div>
-                  </div>
-                  <div class="setting-item background">
-                    <label for="leftAdUpload">Subir imágenes para el anuncio izquierdo:</label>
-                    <input type="file" id="leftAdUpload" (change)="onAdFileSelected($event, 'left')" accept="image/png, image/jpeg" multiple>
-                  </div>
-                  
-                  <div class="setting-item background">
-                    <label for="rightAdUpload">Subir imágenes para el anuncio derecho:</label>
-                    <input type="file" id="rightAdUpload" (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
-                  </div>
+                <div class="cuadricula">
+                    <div class="setting-item logo">
+                        <label for="logo">Logo:</label>
+                        <input id="fileInput" type="file" (change)="onFileSelected($event, 'logo')" accept="image/png, image/jpeg" /> 
+                        <label for="fileInput" class="custom-file-button">Subir</label>
+                        <img *ngIf="logoPreview" [src]="logoPreview" alt="Logo Preview" class="logo-preview"/>
+                      </div>
+                      
+                      <div class="setting-item background">
+                        <label for="background">Fondo de Pantalla</label>
+                        <input id="fileInput1" type="file" (change)="onFileSelected($event, 'background')" accept="image/png, image/jpeg" />
+                        <label for="fileInput1" class="custom-file-button">Subir</label>
+                        <div *ngIf="backgroundPreview" [style.backgroundImage]="'url(' + backgroundPreview + ')'" class="background-preview">
+                          Vista
+                        </div>
+                      </div>
+                      <div class="setting-item background">
+                        <label for="leftAdUpload">Anuncio izquierdo:</label>
+                        <input id="fileInput2" type="file" id="leftAdUpload" (change)="onAdFileSelected($event, 'left')" accept="image/png, image/jpeg" multiple>
+                        <label for="fileInput2" class="custom-file-button">Subir</label>
+                      </div>
+                      
+                      <div class="setting-item background">
+                        <label for="rightAdUpload">Anuncio derecho:</label>
+                        <input id="fileInput3" type="file" id="rightAdUpload" (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
+                        <label for="fileInput3" class="custom-file-button">Subir</label>
+                      </div>  
+                </div>
+                
                   
                   <div class="setting-item topic">
                     <label for="topic">Elegir tema</label>
