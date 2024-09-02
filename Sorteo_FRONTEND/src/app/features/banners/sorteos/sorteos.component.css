@@ -1172,7 +1172,7 @@ input[type="file"] {
   
   @keyframes rotate {
     to {
-      transform: rotate(90deg);
+      transform: rotate(360deg);
     }
   }
   
