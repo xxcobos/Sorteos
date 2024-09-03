@@ -373,3 +373,23 @@ button:active {
   font-size: 24px; /* Tamaño del texto */
   margin: 0; /* Elimina el margen por defecto */
 }
+
+
+
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none; /* Oculto inicialmente */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Asegúrate de que esté encima de todo */
+}
+
+.confetti-container img {
+  width: 100%; /* Ajusta el tamaño del GIF si es necesario */
+  height: auto;
+}

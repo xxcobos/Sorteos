@@ -233,14 +233,24 @@ currentRightImage: string | null = null;
           this.animateWinnerLeftColumn();
           this.animateWinner(); // Llama a la animación de GSAP
           this.addWinnerToCardContainer(winnerName);
-          this.showWinnersContainer()
+          this.showWinnersContainer();
+          this.showConfetti(); // Muestra el confeti después de terminar el sorteo
         }
       }
     });
   }
 
 
-
+  showConfetti(): void {
+    const confettiContainer = document.getElementById('confetti-container') as HTMLElement;
+  
+    if (confettiContainer) {
+      confettiContainer.style.display = 'flex'; // Muestra el contenedor de confeti
+      setTimeout(() => {
+        confettiContainer.style.display = 'none'; // Oculta el contenedor de confeti después de 3 segundos
+      }, 5000); // Ajusta el tiempo si es necesario
+    }
+  }
 
   private showWinnersContainer(): void {
     const winnersContainer = document.querySelector('.winners-container') as HTMLElement;
