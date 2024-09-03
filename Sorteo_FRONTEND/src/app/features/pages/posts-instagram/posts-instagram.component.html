@@ -1,0 +1,34 @@
+<app-nav-bar></app-nav-bar>
+<div class="post-viewer">
+    <div class="container">
+        <div class="navbar-profile2">
+           <img src="assets/images/navbar/profile-icon.png" alt="Profile Icon" class="profile-icon">
+        </div>
+    </div>
+    <h2>Hola, {{ userName }}</h2> <!-- Aquí se muestra el nombre del usuario -->
+    <p>Por favor, selecciona un post</p>
+
+    <div class="images">
+      <div 
+        class="image-wrapper"
+        *ngFor="let photo of photos"
+      >
+        <div 
+          class="image" 
+          [class.selected]="isSelected(photo.id)"
+          (click)="selectPhoto(photo.id)"
+        >
+          <img [src]="photo.mediaUrl" [alt]="'Photo ' + photo.id">
+          <div class="image-date">{{ photo.timestamp | date:'short' }}</div>
+        </div>
+        <!-- Botón para abrir el enlace en una nueva pestaña -->
+        <button class="image-link-button" (click)="openLink(photo.permalink)">Ver Imagen en Instagram</button>
+      </div>
+    </div>
+    
+    
+    
+    <!-- Botón para cargar más fotos -->
+  <button *ngIf="nextUrl" class="load-more-button" (click)="loadMorePhotos()">Cargar más fotos</button>
+
+    
