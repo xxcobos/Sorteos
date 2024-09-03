@@ -116,13 +116,13 @@
                       </div>
                       <div class="setting-item background">
                         <label for="leftAdUpload">Anuncio izquierdo:</label>
-                        <input id="fileInput2" type="file" id="leftAdUpload" (change)="onAdFileSelected($event, 'left')" accept="image/png, image/jpeg" multiple>
+                        <input id="fileInput2" type="file" (change)="onAdFileSelected($event, 'left')" accept="image/png, image/jpeg" multiple>
                         <label for="fileInput2" class="custom-file-button">Subir</label>
                       </div>
                       
                       <div class="setting-item background">
                         <label for="rightAdUpload">Anuncio derecho:</label>
-                        <input id="fileInput3" type="file" id="rightAdUpload" (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
+                        <input id="fileInput3" type="file"  (change)="onAdFileSelected($event, 'right')" accept="image/png, image/jpeg" multiple>
                         <label for="fileInput3" class="custom-file-button">Subir</label>
                       </div>  
                 </div>
